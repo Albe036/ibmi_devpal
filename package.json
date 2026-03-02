@@ -9,17 +9,38 @@
   "categories": [
     "Other"
   ],
-  "activationEvents": [
-    "onLanguage:rpgle",
-    "onLanguage:sqlrpgle",
-    "onLanguage:cl"
-  ],
   "main": "./dist/extension.js",
   "contributes": {
-    "commands": [
+    "languages": [
       {
-        "command": "ibmi-devpal.helloWorld",
-        "title": "Hello World"
+        "id": "rpgle",
+        "aliases": [
+          "RPGLE",
+          "RPG"
+        ],
+        "extensions": [
+          ".rpgle",
+          ".RPGLE",
+          ".sqlrpgle",
+          ".SQLRPGLE"
+        ],
+        "configuration": "./src/language/rpgle-config.json"
+      },
+      {
+        "id": "cl",
+        "aliases": [
+          "CLLE",
+          "CL",
+          "clle",
+          "cl"
+        ],
+        "extensions": [
+          ".clle",
+          ".CLLE",
+          ".cl",
+          ".CL"
+        ],
+        "configuration": "./src/language/cl-config.json"
       }
     ]
   },
@@ -49,38 +70,6 @@
     "@vscode/test-cli": "^0.0.12",
     "@vscode/test-electron": "^2.5.2"
   },
-  "languages": [
-    {
-      "id": "rpgle",
-      "aliases": [
-        "RPGLE",
-        "RPG"
-      ],
-      "extensions": [
-        ".rpgle",
-        ".RPGLE",
-        ".sqlrpgle",
-        ".SQLRPGLE"
-      ],
-      "configuration": "./src/language/rpgle-config.json"
-    },
-    {
-      "id": "cl",
-      "aliases": [
-        "CLLE",
-        "CL",
-        "clle",
-        "cl"
-      ],
-      "extensions": [
-        ".clle",
-        ".CLLE",
-        ".cl",
-        ".CL"
-      ],
-      "configuration": "./src/language/cl-config.json"
-    }
-  ],
   "grammars": [
     {
       "language": "rpgle",
