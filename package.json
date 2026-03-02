@@ -9,7 +9,11 @@
   "categories": [
     "Other"
   ],
-  "activationEvents": [],
+  "activationEvents": [
+    "onLanguage:rpgle",
+    "onLanguage:sqlrpgle",
+    "onLanguage:cl"
+  ],
   "main": "./dist/extension.js",
   "contributes": {
     "commands": [
@@ -44,5 +48,49 @@
     "typescript": "^5.9.3",
     "@vscode/test-cli": "^0.0.12",
     "@vscode/test-electron": "^2.5.2"
-  }
+  },
+  "languages": [
+    {
+      "id": "rpgle",
+      "aliases": [
+        "RPGLE",
+        "RPG"
+      ],
+      "extensions": [
+        ".rpgle",
+        ".RPGLE",
+        ".sqlrpgle",
+        ".SQLRPGLE"
+      ],
+      "configuration": "./src/language/rpgle-config.json"
+    },
+    {
+      "id": "cl",
+      "aliases": [
+        "CLLE",
+        "CL",
+        "clle",
+        "cl"
+      ],
+      "extensions": [
+        ".clle",
+        ".CLLE",
+        ".cl",
+        ".CL"
+      ],
+      "configuration": "./src/language/cl-config.json"
+    }
+  ],
+  "grammars": [
+    {
+      "language": "rpgle",
+      "scopeName": "source.rpgle",
+      "path": "./src/syntaxes/rpgle.tmLanguage.json"
+    },
+    {
+      "language": "cl",
+      "scopeName": "source.cl",
+      "path": "./src/syntaxes/cl.tmLanguage.json"
+    }
+  ]
 }

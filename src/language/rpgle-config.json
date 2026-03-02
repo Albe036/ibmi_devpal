@@ -1,0 +1,13 @@
+{
+    "comments": {
+        "lineComment": "//"
+    },
+    "brackets": [ ["(", ")"], ["[", "]"] ],
+    "onEnterRules": [
+        {
+            "beforeText": "^\\s*(dcl-proc|dcl-pi|dcl-ds|if|else|begsr).*$",
+            "afterText": "^\\s*(end-proc|end-pi|end-ds|endif|endsr).*$",
+            "action": { "indent": "indent" }
+        }
+    ]
+}
