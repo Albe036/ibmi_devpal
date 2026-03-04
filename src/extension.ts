@@ -5,6 +5,14 @@ import { rpgle_declarations, rpgleDataTypes, rpgle_definitions_keywords, rpgle_d
 export function activate(context: vscode.ExtensionContext) {
   const decorations = [
     {
+        type: vscode.window.createTextEditorDecorationType({ color: "#9E9E9E" }),
+        regex: () => /^(.{1,8})/gmi,
+    },
+    {
+        type: vscode.window.createTextEditorDecorationType({ color: "#9E9E9E" }),
+        regex: () => /^.{79}(.+)/gmi,
+    },
+    {
       type: vscode.window.createTextEditorDecorationType({ color: "#FF1744" }),
       regex: () => {
         const tags = rpgle_declarations.map((item) => item.tag.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
@@ -51,6 +59,7 @@ export function activate(context: vscode.ExtensionContext) {
             return new RegExp(`\\b(${all_tags.join("|")})\\b`, "gi");
         }
     },
+    
   ];
 
   function applyDecorations(editor: vscode.TextEditor) {
