@@ -112,7 +112,7 @@ const special_values = [
   "*CURLIB",
 ] as const;
 
-const rpgle_declarations = [
+export const rpgle_declarations = [
   { tag: 'dcl-f',  description: 'Files (Archivos)' },
   { tag: 'dcl-s',  description: 'Standalone Variables (Variables sueltas)' },
   { tag: 'dcl-ds', description: 'Data Structures (Estructuras de datos)' },
@@ -121,4 +121,17 @@ const rpgle_declarations = [
   { tag: 'dcl-pi', description: 'Procedure Interface (Parámetros recibidos)' },
   { tag: 'dcl-proc', description: 'Procedure (Inicio de procedimiento)' },
   { tag: 'dcl-enum', description: 'Enumeration (Lista de valores constantes)' }
+] as const;
+
+const rpgleDataTypes = [
+  { type: 'PACKED',  rpgle: 'packed(len:dec)',  desc: 'Decimal empacado (Base de datos)' },
+  { type: 'ZONED',   rpgle: 'zoned(len:dec)',   desc: 'Decimal zonado (Formato legible)' },
+  { type: 'INT',     rpgle: 'int(3|5|10|20)',   desc: 'Entero con signo (Eficiente)' },
+  { type: 'UNS',     rpgle: 'uns(3|5|10|20)',   desc: 'Entero sin signo' },
+  { type: 'CHAR',    rpgle: 'char(len)',        desc: 'Cadena de longitud fija' },
+  { type: 'VARCHAR', rpgle: 'varchar(len)',     desc: 'Cadena de longitud variable' },
+  { type: 'IND',     rpgle: 'ind',              desc: 'Indicador booleano' },
+  { type: 'DATE',    rpgle: 'date',             desc: 'Fecha (ISO, DMY, etc.)' },
+  { type: 'TIMESTAMP', rpgle: 'timestamp',      desc: 'Fecha y hora con microsegundos' },
+  { type: 'POINTER', rpgle: 'pointer',          desc: 'Dirección de memoria' }
 ] as const;
