@@ -3,18 +3,18 @@
     "configurations": [
         {
             "name": "Run IBM i DevPal",
+            "autoAttachChildProcesses": true,
             "type": "extensionHost",
             "request": "launch",
             "runtimeExecutable": "${execPath}",
             "args": [
-                "--extensionDevelopmentPath=${workspaceFolder}"
+                "--extensionDevelopmentPath=${workspaceFolder}",
+                "--disable-extensions" 
             ],
             "outFiles": [
                 "${workspaceFolder}/out/**/*.js"
             ],
-            "stopOnEntry": false,
-            "sourceMaps": true,
-            "smartStep": true
+            "sourceMaps": true
         }
     ]
 }

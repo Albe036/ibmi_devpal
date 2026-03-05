@@ -2,9 +2,9 @@ export const figurative_constants = [
   "*BLANKS",
   "*BLANK",
   "*ZEROS",
+  "*LOVAL",
   "*ZERO",
   "*HIVAL",
-  "*LOVAL",
   "*NULL",
   "*ON",
   "*OFF",
@@ -27,7 +27,7 @@ export const file_operations = [
   "*DETL",
   "*GET",
 ] as const;
-const control_options = [
+export const control_options = [
   "*YES",
   "*NO",
   "*CALLER",
@@ -49,7 +49,7 @@ const control_options = [
   "*DMY",
   "*YMD",
 ] as const;
-const parameter_passing = [
+export const parameter_passing = [
   "*NOPASS",
   "*OMIT",
   "*VARSIZE",
@@ -57,7 +57,7 @@ const parameter_passing = [
   "*RIGHTADJ",
   "*CONVERT",
 ] as const;
-const indicators = [
+export const indicators = [
   "*INLR",
   "*INU1",
   "*INU2",
@@ -69,6 +69,20 @@ const indicators = [
   "*INU8",
   "*IN01",
   "*IN02", // ... hasta *IN99
+  "*IN03",
+  "*IN04",
+  "*IN05",
+  "*IN06",
+  "*IN07",
+  "*IN08",
+  "*IN09",
+  "*IN10",
+  "*IN11",
+  "*IN12",
+  "*IN13",
+  "*IN14",
+  "*IN15",
+  "*IN16",
   "*INKA",
   "*INKB",
   "*INKC",
@@ -90,7 +104,7 @@ const indicators = [
   "*INKW",
   "*INKX",
 ] as const;
-const data_definition = [
+export const data_definition = [
   "*EXT",
   "*VAR",
   "*CTDATA",
@@ -101,8 +115,8 @@ const data_definition = [
   "*NEXT",
   "*QUALIFIED",
 ] as const;
-const builtInFunctionsPrefix = "%";
-const special_values = [
+export const builtInFunctionsPrefix = "%";
+export const special_values = [
   "*DATE",
   "*DAY",
   "*MONTH",
@@ -134,14 +148,10 @@ export const rpgle_declare_block_endings = {
 };
 
 export const rpgle_declarations = [
-/*   { tag: 'dcl-ds', description: 'Data Structures (Estructuras de datos)' },
-  { tag: 'dcl-pr', description: 'Prototype (Prototipo para llamadas externas)' },
-  { tag: 'dcl-pi', description: 'Procedure Interface (Parámetros recibidos)' },
-  { tag: 'dcl-proc', description: 'Procedure (Inicio de procedimiento)' },
-  { tag: 'dcl-enum', description: 'Enumeration (Lista de valores constantes)' }, */
   { tag: 'dcl-f',  description: 'Files (Archivos)' },
   { tag: 'dcl-s',  description: 'Standalone Variables (Variables sueltas)' },
   { tag: 'dcl-c',  description: 'Constants (Constantes)' },
+  { tag: 'ctl-opt',  description: 'Opciones de objeto' },
 ] as const;
 
 export const rpgleDataTypes = [
@@ -164,3 +174,14 @@ export const rpgle_definitions_keywords = {
   fileSpecific: ['KEYED', 'USAGE', 'EXTFILE', 'EXTMBR', 'RENAME', 'COMMIT', 'INFSR', 'INDDS', 'HANDLER'],
   dataTypesAttributes: ['LEN', 'VARYING', 'CCSID', 'PACKEVEN']
 };
+
+export const ctlOptAttributes = [
+  { tag: 'DFTACTGRP', values: ['*YES', '*NO'], desc: 'Default Activation Group' },
+  { tag: 'ACTGRP',    values: ['*CALLER', '*NEW', 'NAMED'], desc: 'Activation Group Name' },
+  { tag: 'OPTION',    values: ['*SRCSTMT', '*NODEBUGIO', '*EVENTF'], desc: 'Compiler Options' },
+  { tag: 'DATFMT',    values: ['*ISO', '*DMY', '*EUR', '*USA'], desc: 'Date Format' },
+  { tag: 'BNDDIR',    values: ['Binding Directory Name'], desc: 'Library for modules/service pgm' },
+  { tag: 'ALWNULL',   values: ['*USRCTL', '*INPUTONLY', '*NO'], desc: 'Null value handling' },
+  { tag: 'MAIN',      values: ['Procedure Name'], desc: 'Entry point for linear programs' },
+  { tag: 'TEXT',      values: ['Description'], desc: 'Object description text' }
+] as const;

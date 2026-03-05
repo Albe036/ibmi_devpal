@@ -18,6 +18,16 @@
             }
         },
         {
+            "label": "reload-window",
+            "type": "process",
+            "command": "code",
+            "args": ["--command", "workbench.action.reloadWindow"],
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "always"
+            }
+        },
+        {
             "type": "npm",
             "script": "watch:esbuild",
             "group": "build",
@@ -60,5 +70,18 @@
 			],
 			"problemMatcher": []
 		}
+        ,
+        {
+            "label": "watch-and-reload",
+            "dependsOn": [
+                "watch",
+                "reload-window"
+            ],
+            "problemMatcher": [],
+            "group": "build",
+            "presentation": {
+                "reveal": "always"
+            }
+        }
 	]
 }
