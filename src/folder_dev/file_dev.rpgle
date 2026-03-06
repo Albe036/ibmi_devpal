@@ -21,6 +21,9 @@
        dcl-f AZPRM   keyed;
        dcl-f APPAIL1 keyed;
        dcl-f AZLER   keyed;
+       *------------------------------------------------------------------
+       * Copies *
+       *------------------------------------------------------------------
        //-----------------------------------------------------------------*
        // copies
        //-----------------------------------------------------------------*
@@ -213,10 +216,10 @@
        end-proc;
        //-----------------------------------------------------------------*
        // Get record
-        // Description procedure: get case record
-        // Parameters:
-        // @p_fcskey: case number
-        // @p_fcsint: card number
+       // Description procedure: get case record
+       // Parameters:
+       // @p_fcskey: case number
+       // @p_fcsint: card number
        //-----------------------------------------------------------------*
        dcl-proc $ai0405_get_case_record export;
          dcl-ds res likeds(ds_ai0405_case_data_assign);
@@ -256,17 +259,17 @@
        end-proc;
        //-----------------------------------------------------------------*
        // list transactions
-        // Description procedure: list card transactions with filters
-        // Parameters:
-        // @card: card number or token
-        // @amount: transaction amount
-        // @last_step: last step
-        // @str_date: start date
-        // @str_time: start time
-        // @end_date: end date
-        // @end_time: end time
-        // @number_records: number of records to return
-        // @pointer_proc: pointer to callback procedure for each record
+       // Description procedure: list card transactions with filters
+       // Parameters:
+       // @card: card number or token
+       // @amount: transaction amount
+       // @last_step: last step
+       // @str_date: start date
+       // @str_time: start time
+       // @end_date: end date
+       // @end_time: end time
+       // @number_records: number of records to return
+       // @pointer_proc: pointer to callback procedure for each record
        //-----------------------------------------------------------------*
        dcl-proc $ai0405_list_card_transactions export;
          dcl-ds data ext inz(*extdft) extname('ACFTP') qualified end-ds;
@@ -494,9 +497,9 @@
        end-proc;
        //-----------------------------------------------------------------*
        // add transaction (case, status, prediction)
-        // Description procedure: add transaction and link to case
-        // Parameters:
-        // @p_data: transaction data
+       // Description procedure: add transaction and link to case
+       // Parameters:
+       // @p_data: transaction data
        //-----------------------------------------------------------------*
        dcl-proc $ai0405_add_transaction export;
          dcl-ds res likeds(ds_ai0405_res_add_transactions);

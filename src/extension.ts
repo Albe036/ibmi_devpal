@@ -1,32 +1,36 @@
 import * as vscode from "vscode";
 import {
-  rpgle_declarations,
+  single_definitions,
   rpgleDataTypes,
   rpgle_definitions_keywords,
-  rpgle_declare_block_endings,
+  open_and_close_definitions,
   figurative_constants,
   file_operations,
   control_options,
-  ctlOptAttributes
+  ctlOptAttributes,
 } from "./reserved_words";
 
 export function activate(context: vscode.ExtensionContext) {
   const decorations = [
     {
       //Margen inferior de 7 caracteres
-      type: vscode.window.createTextEditorDecorationType({ color: "#9E9E9E" }),
+      type: vscode.window.createTextEditorDecorationType({
+        color: "#d8dc6a",
+        fontStyle: "italic",
+        fontWeight: "bold",
+      }),
       regex: () => /^(.{1,7})/gim,
     },
     {
-      //comentarios
-      type: vscode.window.createTextEditorDecorationType({ color: "#008080" }),
+      //comentarios //
+      type: vscode.window.createTextEditorDecorationType({ color: "#098181" }),
       regex: () => /(?<!:)\/\/.*/gim,
     },
     {
       //declaraciones simples
       type: vscode.window.createTextEditorDecorationType({ color: "#FF1744" }),
       regex: () => {
-        const tags = rpgle_declarations.map((item) =>
+        const tags = single_definitions.map((item) =>
           item.tag.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"),
         );
         return new RegExp(`\\b(${tags.join("|")})\\b`, "gi");
@@ -36,39 +40,21 @@ export function activate(context: vscode.ExtensionContext) {
       //declaraciones de bloques, control de lógica y loops
       type: vscode.window.createTextEditorDecorationType({ color: "#FF1744" }),
       regex: () => {
-        const tags_declaration = rpgle_declare_block_endings.declarations.map(
-          (item) => item.start.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"),
-        );
-        const tags_logic = rpgle_declare_block_endings.logicControl.map(
-          (item) => item.start.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"),
-        );
-        const tags_loops = rpgle_declare_block_endings.loops.map((item) =>
-          item.start.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"),
-        );
-        const all_tags_start = [
-          ...tags_declaration,
-          ...tags_logic,
-          ...tags_loops,
-        ];
-        const tags_declaration_end =
-          rpgle_declare_block_endings.declarations.map((item) =>
-            item.end.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"),
-          );
-        const tags_logic_end = rpgle_declare_block_endings.logicControl.map(
-          (item) => item.end.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"),
-        );
-        const tags_loops_end = rpgle_declare_block_endings.loops.map((item) =>
-          item.end.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"),
-        );
-        const all_tags_end = [
-          ...tags_declaration_end,
-          ...tags_logic_end,
-          ...tags_loops_end,
-        ];
+        const all_tags_start = [];
+        const all_tags_end = [];
+        for(const opens of Object.values(open_and_close_definitions)){
+          for(const item of opens){
+            all_tags_start.push(item.start.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
+            all_tags_end.push(item.end.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
+          }
+        }
         const all_tags = [...all_tags_start, ...all_tags_end];
         return new RegExp(`\\b(${all_tags.join("|")})\\b`, "gi");
       },
     },
+  ];
+  //---------------------------------------------------
+  const decorations2 = [
     {
       //textos
       type: vscode.window.createTextEditorDecorationType({ color: "#43A047" }),
@@ -118,7 +104,7 @@ export function activate(context: vscode.ExtensionContext) {
           ...tags_parameters,
           ...tags_file_specific,
           ...tag_data_types_attributes,
-          ...tags_attr_ctl_opt
+          ...tags_attr_ctl_opt,
         ];
         return new RegExp(`\\b(${all_tags.join("|")})\\b`, "gi");
       },
@@ -138,7 +124,7 @@ export function activate(context: vscode.ExtensionContext) {
         const all_tags = [
           ...tags_figurative_constants,
           ...tags_file_operations,
-          ...tags_control_options
+          ...tags_control_options,
         ];
         const patron = `\\b${all_tags.join("|")}\\b`;
         return new RegExp(patron, "gi");
